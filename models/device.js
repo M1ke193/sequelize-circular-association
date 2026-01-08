@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
 
     sequelize.addHook('beforeBulkSync', (syncOptions) => {
         console.log('BeforeBulkSync is called');
+        sequelize.query(`DROP TRIGGER IF EXISTS devices_log_trg ON public.device;`)
     });
 
     sequelize.addHook('afterBulkSync', async (syncOptions) => {
